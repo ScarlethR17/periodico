@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERA INFINITA | Entretenimiento</title>
+<link rel="stylesheet" href="css/entretenimiento.css">
+</head>
+<body>
+
+<div class="contenedor">
+    <h1>ENTRETENIMIENTO</h1>
+    <p class="sub">Encuentra las 5 palabras ocultas</p>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="palabras">
+        AGOSTO · ANILLO · TULIPAN · ESTEGOSAURIO · CODIGO
+    </div>
+
+    <div class="contador">
+        Palabras encontradas: <span id="contador">0</span> / 5
+    </div>
+
+    <div class="mensaje-final" id="mensajeFinal">
+        🔒 Mensaje Revelado:<br><br>
+        Nuestro código comenzó en agosto,<br>
+        floreció como un tulipán,<br>
+        promete un anillo,<br>
+        tiene la fuerza de un estegosaurio,<br>
+        y será eterno. 💍
+    </div>
+</div>
+
+<script>
+
+const palabras = ["AGOSTO","ANILLO","TULIPAN","ESTEGOSAURIO","CODIGO"];
+let encontradas = [];
+
+const letras = [
+"A","G","O","S","T","O","C","O","D","I","G","O",
+"E","S","T","E","G","O","S","A","U","R","I","O",
+"A","N","I","L","L","O","Q","W","E","R","T","Y",
+"T","U","L","I","P","A","N","Z","X","C","V","B",
+"Q","W","E","R","T","Y","U","I","O","P","A","S",
+"D","F","G","H","J","K","L","Z","X","C","V","B"
+];
+
+const grid = document.getElementById("grid");
+let seleccionando = false;
+let seleccionActual = [];
+
+letras.forEach((letra, index)=>{
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    cell.textContent = letra;
+    cell.dataset.index = index;
+    grid.appendChild(cell);
+});
+
+grid.addEventListener("mousedown", e=>{
+    if(!e.target.classList.contains("cell")) return;
+    seleccionando = true;
+    seleccionActual=[];
+    seleccionarCelda(e.target);
+});
+
+grid.addEventListener("mouseover", e=>{
+    if(seleccionando && e.target.classList.contains("cell")){
+        seleccionarCelda(e.target);
+    }
+});
+
+document.addEventListener("mouseup", ()=>{
+    seleccionando=false;
+    verificar();
+    seleccionActual=[];
+    document.querySelectorAll(".cell").forEach(c=>c.classList.remove("selecting"));
+});
+
+function seleccionarCelda(cell){
+    if(!seleccionActual.includes(cell)){
+        seleccionActual.push(cell);
+        cell.classList.add("selecting");
+    }
+}
+
+function verificar(){
+    const palabraFormada = seleccionActual.map(c=>c.textContent).join("");
+    const palabraReversa = palabraFormada.split("").reverse().join("");
+
+    palabras.forEach(p=>{
+        if((palabraFormada===p || palabraReversa===p) && !encontradas.includes(p)){
+            seleccionActual.forEach(c=>{
+                c.classList.remove("selecting");
+                c.classList.add("found");
+            });
+            encontradas.push(p);
+            document.getElementById("contador").textContent = encontradas.length;
+
+            if(encontradas.length===5){
+                document.getElementById("mensajeFinal").style.display="block";
+            }
+        }
+    });
+}
+
+</script>
+<a href="carta.html" class="btn-edicion">
+    Continuar a la sección de Carta →
+</a>
+<a href="sociedad.html" class="btn-edicion">
+    Regresar a la sección de Sociedad 
+</a>
+</body>
+</html>

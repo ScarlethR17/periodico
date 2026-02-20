@@ -1,0 +1,131 @@
+body{
+    margin:0;
+    padding:0;
+    background:#d6d1c4;
+    font-family:"Times New Roman", serif;
+    color:#111;
+}
+
+.pagina-sociedad{
+    max-width:1100px;
+    margin:60px auto;
+    background:#f4f1e8;
+    padding:60px;
+    border:3px double #000;
+}
+
+.cabecera-sociedad{
+    text-align:center;
+}
+
+.cabecera-sociedad h1{
+    font-size:40px;
+    letter-spacing:6px;
+    margin:10px 0;
+}
+
+.linea{
+    height:3px;
+    background:#000;
+}
+
+.seccion{
+    font-size:14px;
+    letter-spacing:3px;
+    margin-top:10px;
+}
+
+.titular-principal{
+    text-align:center;
+    font-size:38px;
+    margin-top:40px;
+    text-transform:uppercase;
+}
+
+.subtitulo{
+    text-align:center;
+    font-style:italic;
+    margin-bottom:40px;
+}
+
+.bloque-sociedad{
+    display:grid;
+    grid-template-columns:1fr 1.2fr 1fr;
+    gap:40px;
+    align-items:start;
+}
+
+.columna-texto h3{
+    font-size:22px;
+    border-bottom:2px solid #000;
+    padding-bottom:5px;
+    margin-top:0;
+}
+
+.columna-texto p{
+    text-align:justify;
+    line-height:1.8;
+    font-size:16px;
+}
+
+.columna-imagen img{
+    width:100%;
+    height:420px;
+    object-fit:cover;
+    border:4px solid #000;
+    padding:8px;
+    background:#fff;
+    filter:grayscale(100%);
+}
+
+.editorial-final{
+    margin-top:50px;
+    padding-top:20px;
+    border-top:2px solid #000;
+    text-align:center;
+    font-style:italic;
+    font-size:18px;
+}
+
+@media(max-width:900px){
+    .bloque-sociedad{
+        grid-template-columns:1fr;
+    }
+
+    .columna-imagen img{
+        height:300px;
+    }
+}
+.btn-edicion {
+    display: block;
+    width: fit-content;
+    margin: 60px auto;
+    padding: 18px 50px;
+    background: black;
+    color: white;
+    text-decoration: none;
+    font-family: "Times New Roman", serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s;
+}
+
+.btn-edicion::after {
+    content: "→";
+    position: absolute;
+    right: 20px;
+    transition: 0.4s;
+}
+
+.btn-edicion:hover {
+    background: white;
+    color: black;
+    border: 2px solid black;
+}
+
+.btn-edicion:hover::after {
+    right: 10px;
+}
